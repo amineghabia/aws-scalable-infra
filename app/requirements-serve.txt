@@ -1,0 +1,4 @@
+stable-baselines3>=2.0
+gymnasium[box2d]
+fastapi>=0.110
+uvicorn>=0.29
