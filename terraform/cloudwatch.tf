@@ -10,9 +10,12 @@ resource "aws_cloudwatch_dashboard" "main" {
         width  = 12
         height = 6
         properties = {
-          title  = "ECS Running Task Count"
-          period = 60
-          stat   = "Average"
+          title   = "ECS Running Task Count"
+          region  = var.aws_region
+          period  = 60
+          stat    = "Average"
+          view    = "timeSeries"
+          stacked = false
           metrics = [[
             "ECS/ContainerInsights", "RunningTaskCount",
             "ClusterName", "${var.project_name}-cluster",
@@ -27,9 +30,12 @@ resource "aws_cloudwatch_dashboard" "main" {
         width  = 12
         height = 6
         properties = {
-          title  = "ECS CPU Utilization (%)"
-          period = 60
-          stat   = "Average"
+          title   = "ECS CPU Utilization (%)"
+          region  = var.aws_region
+          period  = 60
+          stat    = "Average"
+          view    = "timeSeries"
+          stacked = false
           metrics = [[
             "AWS/ECS", "CPUUtilization",
             "ClusterName", "${var.project_name}-cluster",
@@ -44,9 +50,12 @@ resource "aws_cloudwatch_dashboard" "main" {
         width  = 12
         height = 6
         properties = {
-          title  = "ALB Request Count"
-          period = 60
-          stat   = "Sum"
+          title   = "ALB Request Count"
+          region  = var.aws_region
+          period  = 60
+          stat    = "Sum"
+          view    = "timeSeries"
+          stacked = false
           metrics = [[
             "AWS/ApplicationELB", "RequestCount",
             "LoadBalancer", aws_lb.main.arn_suffix
@@ -60,9 +69,12 @@ resource "aws_cloudwatch_dashboard" "main" {
         width  = 12
         height = 6
         properties = {
-          title  = "ALB Target Response Time (ms)"
-          period = 60
-          stat   = "Average"
+          title   = "ALB Target Response Time (ms)"
+          region  = var.aws_region
+          period  = 60
+          stat    = "Average"
+          view    = "timeSeries"
+          stacked = false
           metrics = [[
             "AWS/ApplicationELB", "TargetResponseTime",
             "LoadBalancer", aws_lb.main.arn_suffix
